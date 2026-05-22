@@ -1,7 +1,76 @@
-# Step - 1
-🚀 Starting query execution: "Find latest AI regulations in India and summarize key changes"...
-warning: The `tool.uv.dev-dependencies` field (used in `pyproject.toml`) is deprecated and will be removed in a future release; use `dependency-groups.dev` instead
+# Autonomous Research Agent Console 🤖
 
+This repository contains a clean-room, custom implementation of an **Autonomous Research & Task Execution Agent** built from scratch for Assignment 6. 
+
+The system features an interactive, premium **Web Dashboard** to run and monitor the agent, which implements a four-layer cognitive loop (**Perception**, **Decision**, **Action**, and **Memory**) strictly validated via **Pydantic v2** contracts.
+
+---
+
+## 🖥️ Web Console Dashboard
+
+Below is the interface of the agent console. It runs locally and provides real-time SSE console streaming, an active memory database viewer, and step timeline history.
+
+![Autonomous Research Agent Console](screenshot.png)
+
+---
+
+## 🚀 How to Setup and Run
+
+### 1. Prerequisites
+- **Python 3.11+**
+- **`uv`** (fast Python dependency manager)
+- A `.env` file containing required credentials (e.g. `TAVILY_API_KEY`)
+
+### 2. Run the Web Dashboard (Recommended)
+Launch the interactive console in your browser:
+```bash
+uv run uvicorn web_server:app --host 0.0.0.0 --port 8102
+```
+Open **[http://localhost:8102](http://localhost:8102)** to run queries, clear state, and view the inspector live.
+
+### 3. Run via CLI (Alternative)
+You can also run individual queries directly in your shell:
+```bash
+# Query A: Web Research
+uv run python agent6.py "Find latest AI regulations in India and summarize key changes"
+
+# Query B: Multi-Hop Reasoning
+uv run python agent6.py "Find top open-source vector databases and compare licensing"
+
+# Query C (Run 1): Save to Memory
+uv run python agent6.py "Remember that my preferred database is PostgreSQL"
+
+# Query C (Run 2): Recall from Memory
+uv run python agent6.py "What database do I prefer?"
+
+# Query D: Tool Chaining
+uv run python agent6.py "Find best MCP servers for browser automation and explain installation"
+```
+
+---
+
+## 📊 Verification Matrix & Convergence
+
+The agent executes all queries successfully under the hard limit of **8 iterations** (usually converging in 1–5 iterations):
+
+| Target Query | Cognitive Intent | Iteration Count | Status |
+| :--- | :--- | :---: | :---: |
+| **Query A** | Web Research | **3** | **PASSED** |
+| **Query B** | Multi-Hop Reasoning | **5** | **PASSED** |
+| **Query C (Run 1)** | Durable Memory (Write) | **1** | **PASSED** |
+| **Query C (Run 2)** | Durable Memory (Read) | **2** | **PASSED** |
+| **Query D** | Tool Chaining | **3** | **PASSED** |
+
+---
+
+## 📋 Terminal Output Logs
+
+Click on any section below to expand and view the raw terminal output of the agent execution.
+
+<details>
+<summary>🔍 <strong>Query A: Web Research (AI regulations in India) — 3 Iterations</strong></summary>
+
+```text
 ======================================================================
 🤖 Autonomous Research Agent | Assignment 6
 ======================================================================
@@ -140,14 +209,13 @@ Query : Find latest AI regulations in India and summarize key changes
 Iterations used: 3
 Sources : 1 URL(s)
 - https://regulations.ai/regulations/india-summary
-__EOF__
-⚠️ Stream closed unexpectedly due to connection or completion error.
+```
+</details>
 
+<details>
+<summary>🧠 <strong>Query B: Multi-Hop Reasoning (Vector DB licenses) — 5 Iterations</strong></summary>
 
-# Step - 2
-🚀 Starting query execution: "Find top open-source vector databases and compare licensing"...
-warning: The `tool.uv.dev-dependencies` field (used in `pyproject.toml`) is deprecated and will be removed in a future release; use `dependency-groups.dev` instead
-
+```text
 ======================================================================
 🤖 Autonomous Research Agent | Assignment 6
 ======================================================================
@@ -341,14 +409,14 @@ Iterations used: 5
 Sources : 2 URL(s)
 - https://redis.io/blog/best-open-source-vector-databases-comparison/
 - https://aloa.co/ai/comparisons/vector-database-comparison/open-source-vs-closed-source-vector-databases
-__EOF__
-⚠️ Stream closed unexpectedly due to connection or completion error.
+```
+</details>
 
-# Step - 3.1
+<details>
+<summary>💾 <strong>Query C: Durable Memory Persistence — 1 & 2 Iterations</strong></summary>
 
-🚀 Starting query execution: "Remember that my preferred database is PostgreSQL"...
-warning: The `tool.uv.dev-dependencies` field (used in `pyproject.toml`) is deprecated and will be removed in a future release; use `dependency-groups.dev` instead
-
+### Stage 1: Store PostgreSQL Preference (1 Iteration)
+```text
 ======================================================================
 🤖 Autonomous Research Agent | Assignment 6
 ======================================================================
@@ -401,16 +469,10 @@ should save this information to memory.
 ======================================================================
 Query : Remember that my preferred database is PostgreSQL
 Iterations used: 1
-__EOF__
-⚠️ Stream closed unexpectedly due to connection or completion error.
+```
 
-
-
-# Step - 3.2
-
-🚀 Starting query execution: "What database do I prefer?"...
-warning: The `tool.uv.dev-dependencies` field (used in `pyproject.toml`) is deprecated and will be removed in a future release; use `dependency-groups.dev` instead
-
+### Stage 2: Recall Database Preference (2 Iterations)
+```text
 ======================================================================
 🤖 Autonomous Research Agent | Assignment 6
 ======================================================================
@@ -487,15 +549,13 @@ You prefer PostgreSQL.
 ======================================================================
 Query : What database do I prefer?
 Iterations used: 2
-__EOF__
-⚠️ Stream closed unexpectedly due to connection or completion error.
+```
+</details>
 
+<details>
+<summary>🕷️ <strong>Query D: Tool Chaining (Browser automation MCP servers) — 3 Iterations</strong></summary>
 
-# Step - 4
-
-🚀 Starting query execution: "Find best MCP servers for browser automation and explain installation"...
-warning: The `tool.uv.dev-dependencies` field (used in `pyproject.toml`) is deprecated and will be removed in a future release; use `dependency-groups.dev` instead
-
+```text
 ======================================================================
 🤖 Autonomous Research Agent | Assignment 6
 ======================================================================
@@ -638,5 +698,5 @@ Query : Find best MCP servers for browser automation and explain installation
 Iterations used: 3
 Sources : 1 URL(s)
 - https://pagebolt.dev/blog/best-mcp-browser-automation-servers
-__EOF__
-⚠️ Stream closed unexpectedly due to connection or completion error.
+```
+</details>
