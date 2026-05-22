@@ -65,10 +65,9 @@ The agent executes all queries successfully under the hard limit of **8 iteratio
 
 ## 📋 Terminal Output Logs
 
-Click on any section below to expand and view the raw terminal output of the agent execution.
+Below is the raw terminal output of the agent execution for each of the four queries.
 
-<details>
-<summary>🔍 <strong>Query A: Web Research (AI regulations in India) — 3 Iterations</strong></summary>
+### 🔍 Query A: Web Research (AI regulations in India) — 3 Iterations
 
 ```text
 ======================================================================
@@ -210,10 +209,8 @@ Iterations used: 3
 Sources : 1 URL(s)
 - https://regulations.ai/regulations/india-summary
 ```
-</details>
 
-<details>
-<summary>🧠 <strong>Query B: Multi-Hop Reasoning (Vector DB licenses) — 5 Iterations</strong></summary>
+### 🧠 Query B: Multi-Hop Reasoning (Vector DB licenses) — 5 Iterations
 
 ```text
 ======================================================================
@@ -410,12 +407,10 @@ Sources : 2 URL(s)
 - https://redis.io/blog/best-open-source-vector-databases-comparison/
 - https://aloa.co/ai/comparisons/vector-database-comparison/open-source-vs-closed-source-vector-databases
 ```
-</details>
 
-<details>
-<summary>💾 <strong>Query C: Durable Memory Persistence — 1 & 2 Iterations</strong></summary>
+### 💾 Query C: Durable Memory Persistence — 1 & 2 Iterations
 
-### Stage 1: Store PostgreSQL Preference (1 Iteration)
+#### Stage 1: Store PostgreSQL Preference (1 Iteration)
 ```text
 ======================================================================
 🤖 Autonomous Research Agent | Assignment 6
@@ -471,7 +466,7 @@ Query : Remember that my preferred database is PostgreSQL
 Iterations used: 1
 ```
 
-### Stage 2: Recall Database Preference (2 Iterations)
+#### Stage 2: Recall Database Preference (2 Iterations)
 ```text
 ======================================================================
 🤖 Autonomous Research Agent | Assignment 6
@@ -550,10 +545,8 @@ You prefer PostgreSQL.
 Query : What database do I prefer?
 Iterations used: 2
 ```
-</details>
 
-<details>
-<summary>🕷️ <strong>Query D: Tool Chaining (Browser automation MCP servers) — 3 Iterations</strong></summary>
+### 🕷️ Query D: Tool Chaining (Browser automation MCP servers) — 3 Iterations
 
 ```text
 ======================================================================
@@ -699,4 +692,3 @@ Iterations used: 3
 Sources : 1 URL(s)
 - https://pagebolt.dev/blog/best-mcp-browser-automation-servers
 ```
-</details>
